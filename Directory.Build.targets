@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- FCO fork version suffix. Change to -fco-1, -fco-2, etc. for iterations. -->
+    <FCOVersionSuffix>-fco-1</FCOVersionSuffix>
+    <Version>$(ReleaseVersion)$(FCOVersionSuffix)</Version>
+  </PropertyGroup>
+</Project>

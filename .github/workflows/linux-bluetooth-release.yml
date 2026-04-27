@@ -1,0 +1,26 @@
+name: Linux.Bluetooth Release
+
+on:
+  push:
+    branches:
+      - '**'
+
+env:
+  TESTS: src/Linux.Bluetooth.Tests/Linux.Bluetooth.Tests.csproj
+
+jobs:
+  test:
+    name: Unit tests (Linux)
+    runs-on: ubuntu-22.04
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:10.0
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore dependencies
+        run: dotnet restore "${{ env.TESTS }}"
+
+      - name: Run unit tests
+        run: dotnet test "${{ env.TESTS }}" --configuration Release --no-restore --verbosity normal
