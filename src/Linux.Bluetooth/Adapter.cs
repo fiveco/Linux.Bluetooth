@@ -36,12 +36,7 @@ namespace Linux.Bluetooth
     private IObjectManager ObjectManager => 
       _objectManager ?? throw new InvalidOperationException("Adapter object manager has not been initialized.");
 
-    ~Adapter()
-    {
-      Dispose();
-    }
-
-    internal static async Task<Adapter> CreateAsync(IAdapter1 proxy)
+    public static async Task<Adapter> CreateAsync(IAdapter1 proxy)
     {
       var adapter = new Adapter
       {
@@ -76,8 +71,6 @@ namespace Linux.Bluetooth
 
         _connTrackedDevices.Clear();
       }
-
-      GC.SuppressFinalize(this);
     }
 
     public event DeviceChangeEventHandlerAsync DeviceFound
